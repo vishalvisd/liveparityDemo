@@ -102,7 +102,8 @@
                     window.ortcClient.connect("mSWWWb", "testToken");
 
                     window.ortcClient.onConnected = function() {
-                        window.ortcClient.send('myChannel', JSON.stringify(chunkData))
+                        window.ortcClient.send('parityLiveRateshopChannel', JSON.stringify(chunkData));
+
                     };
                 }
             });
