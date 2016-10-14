@@ -1,98 +1,92 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>HTML Form</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
     <script src="https://messaging-public.realtime.co/js/2.1.0/ortc.js"></script>
+
     <style type="text/css">
-        .form-style-4{
-            width: 450px;
-            font-size: 16px;
-            background: #495C70;
-            padding: 30px 30px 15px 30px;
-            border: 5px solid #53687E;
-        }
-        .form-style-4 input[type=submit],
-        .form-style-4 input[type=button],
-        .form-style-4 input[type=text],
-        .form-style-4 input[type=email],
-        .form-style-4 textarea,
-        .form-style-4 label
-        {
-            font-family: Georgia, "Times New Roman", Times, serif;
-            font-size: 16px;
-            color: #fff;
 
-        }
-        .form-style-4 label {
-            display:block;
-            margin-bottom: 10px;
-        }
-        .form-style-4 label > span{
-            display: inline-block;
-            float: left;
-            width: 3000px;
-        }
-        .form-style-4 input[type=text],
-        .form-style-4 input[type=email]
-        {
-            background: transparent;
-            border: none;
-            border-bottom: 1px dashed #83A4C5;
-            width: 275px;
-            outline: none;
-            padding: 0px 0px 0px 0px;
-            font-style: italic;
-        }
-        .form-style-4 textarea{
-            font-style: italic;
-            padding: 0px 0px 0px 0px;
-            background: transparent;
-            outline: none;
-            border: none;
-            border-bottom: 1px dashed #83A4C5;
-            width: 275px;
-            overflow: hidden;
-            resize:none;
-            height:20px;
-        }
+        * { margin: 0; padding: 0; }
 
-        .form-style-4 textarea:focus,
-        .form-style-4 input[type=text]:focus,
-        .form-style-4 input[type=email]:focus,
-        .form-style-4 input[type=email] :focus
-        {
-            border-bottom: 1px dashed #D9FFA9;
-        }
+        html { height: 100%; font-size: 62.5% }
 
-        .form-style-4 input[type=submit],
-        .form-style-4 input[type=button]{
-            background: #576E86;
-            border: none;
-            padding: 8px 10px 8px 10px;
-            border-radius: 5px;
-            color: #A8BACE;
-        }
-        .form-style-4 input[type=submit]:hover,
-        .form-style-4 input[type=button]:hover{
-            background: #394D61;
-        }
+        body { height: 100%; background-color: #FFFFFF; font: 1.2em Verdana, Arial, Helvetica, sans-serif; }
+
+
+        /* ==================== Form style sheet ==================== */
+
+        form { margin: 25px 0 0 29px; width: 445px; padding-bottom: 30px }
+        form * { vertical-align: middle; }
+
+        fieldset { margin: 0 0 22px 0; border: 0; }
+        legend { font-size: 1.2em; color: #2E6600; font-weight: bold; }
+
+        label { float: left; display: block; width: 100px; margin-top: 4px; clear: left; }
+        label.choose { width: 162px; }
+        label.spam-protection { display: inline; width: auto; }
+
+        input.text, textarea, input.choose, input.answer { border: 1px solid #909090; padding: 3px; }
+        input.text { width: 300px; margin: 0 0 8px 0; }
+        textarea { width: 400px; margin: 0 0 12px 0; display: block; }
+
+        select { width: 250px; border: 1px solid #909090; padding: 2px;  margin: 0 0 8px 0; }
+
+        input.choose { margin: 0; }
+        input.answer { width: 40px; margin: 0 0 0 10px; }
+        input.submit-text { font: 1.4em Georgia, "Times New Roman", Times, serif; letter-spacing: 1px; display: block; margin: 23px 0 0 0; }
+
+        hr.formik { height: 1px; color: gray; background-color: gray; border: 0 solid gray; margin: 3px 0 20px 0; }
+        form br { display: none; }
+
+        /* ==================== Form style sheet END ==================== */
+
     </style>
+
+    <!--[if lte IE 7]>
+    <style type="text/css">
+
+        /* ==================== Form style sheet for IE 7 and lower ==================== */
+
+        legend { position: relative; top: 6px; left: -7px; }
+
+        /* ==================== Form style sheet for IE end ==================== */
+
+    </style>
+    <![endif]-->
     <script type="text/javascript">
-    //auto expand textarea
-    function adjust_textarea(h) {
-    h.style.height = "20px";
-    h.style.height = (h.scrollHeight)+"px";
-    }
+        var getTopicId = function(arrivalDate, los, guests){
+            var monthYear = moment(arrivalDate, "YYYY-MM-DD").format("MMMM") + "-" + moment(arrivalDate, "YYYY-MM-DD").format("YYYY");
+            if (monthYear === "October-2016" && los == 1 && guests == 3){
+                return "d2324906-366c-4a28-b029-5e6d08c3797e";
+            } else if (monthYear === "October-2016" && los == 2 && guests == 2) {
+                return "822b1349-5488-4e12-9386-bc2c3068c1fa";
+            } else if (monthYear === "November-2016" && los == 1 && guests == 3) {
+                return "d2324906-366c-4a28-b029-5e6d08c37971";
+            } else if (monthYear === "December-2016" && los == 1 && guests == 2) {
+                return "d2324906-366c-4a28-b029-5e6d08c37973";
+            } else {
+                return monthYear + los + guests;
+            }
+        }
         var handler = function () {
-             var chunkData = {
-               jobId: "97e27996-5467-4eb3-8ce0-72ef3285c265",
-               date: document.getElementById("thedate").value,
-               channelInfo: [{
-                 type: "primary",
-                 name: document.getElementById("thechannelname").value,
-                 value: document.getElementById("therate").value,
-                 addonInfo: document.getElementById("theaddoninfo").value
-               }]
-             };
+            var formData = {
+                arrivalDate: document.getElementById("input-one").value,
+                los: document.getElementById("select").value,
+                guests: document.getElementById("select2").value,
+                channel: document.getElementById("select3").value,
+                price: document.getElementById("price").value
+            };
+            var jobId = getTopicId(formData.arrivalDate, formData.los, formData.guests);
+            var dd = document.getElementById("select3");
+            var channelName = dd.options[dd.selectedIndex].innerHTML.indexOf("Meta") !== -1 ? "Partner" : "";
+            var chunkData = {
+                channel: formData.channel,
+                arrivaldt: formData.arrivalDate,
+                channelName: channelName,
+                price: formData.price
+            };
             window.loadOrtcFactory(window.IbtRealTimeSJType, function(factory, error) {
                 if (error !== null) {
                     console.log(`ORTC factory error: ${error.message}`);
@@ -102,36 +96,74 @@
                     window.ortcClient.connect("mSWWWb", "testToken");
 
                     window.ortcClient.onConnected = function() {
-                        window.ortcClient.send('parityLiveRateshopChannel', JSON.stringify(chunkData));
+                        window.ortcClient.send(''+jobId, JSON.stringify(chunkData));
 
                     };
                 }
             });
         }
-
     </script>
 </head>
+
+
 <body>
-<form class="form-style-4" action="" method="post">
-    <label for="field1">
-        <span>JOB ID: 97e27996-5467-4eb3-8ce0-72ef3285c265 </span>
-    </label>
-    <br />
-    <label for="field1">
-        <span>Date (YYYY-MM-DD) </span><input type="text" id="thedate" name="field1" id="" required="true" />
-    </label>
-    <label for="field2">
-        <span>Channel Name (Booking/Expedia/etc) </span><input type="text" id="thechannelname" name="field2" required="true" />
-    </label>
-    <label for="field3">
-        <span>Rate </span><input type="text" id="therate" name="field3" required="true" />
-    </label>
-    <label for="field4">
-        <span>Addon Info </span><input type="text" id="theaddoninfo" name="field4" required="true" />
-    </label>
-    <label>
-        <span>&nbsp;</span><input type="button" onclick="handler()" value="Send Chunk" />
-    </label>
+
+<form>
+    <!-- ============================== Fieldset 1 ============================== -->
+    <fieldset>
+        <legend>Fill it:</legend>
+        <hr class="formik" />
+
+        <label><strong>Property:</strong></label><br />
+        <div style="margin-bottom:20px">HHH </div>
+        <label for="input-one"><strong>Arrival Date (YYYY-MM-DD):</strong></label><br />
+        <input name="input-one-name" type="text" size="20" id="input-one" class="text" /><br />
+
+    </fieldset>
+    <!-- ============================== Fieldset 1 end ============================== -->
+
+
+    <!-- ============================== Fieldset 2 ============================== -->
+    <fieldset>
+        <label for="select" class="choose">LOS</label><br />
+        <select id="select" name="select">
+            <option value="0" selected="selected">--- Choose one ---</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+
+        <label for="select2" class="choose">Guests</label><br />
+        <select id="select2" name="select2">
+            <option value="0" selected="selected">--- Choose one ---</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+
+        <label for="select3" class="choose">Channel</label><br />
+        <select id="select3" name="select3">
+            <option value="0" selected="selected">--- Choose one ---</option>
+            <option value="33061664-8494-11e6-8d43-f78ca44d49f3">Expedia (OTA)</option>
+            <option value="3becc834-e4ec-11e4-abc5-23a897db0917">Booking</option>
+            <option value="b10cbe08-e10d-11e5-8ad3-0f635d084e58">Pleasant Holidays</option>
+            <option value="d657a7e8-daed-11e5-b326-9faf6c711c2f">Trivago (Meta)</option>
+            <option value="3beccc30-e4ec-11e4-abc5-bb3b688b7184">Expedia (Meta)</option>
+            <option value="98aae05a-d14b-11e5-8567-2bf9d1e985e5">iHotelier (Meta)</option>
+        </select>
+
+        <label for="price"><strong>Price:</strong></label><br />
+        <input name="price" type="text" size="20" id="price" class="text" /><br />
+    </fieldset>
+    <!-- ============================== Fieldset 2 end ============================== -->
+
+
+    <p><input type="button" onclick="handler()" alt="SUBMIT" name="Submit" value="SUBMIT" class="submit-text" /></p>
 </form>
+
 </body>
 </html>
+
