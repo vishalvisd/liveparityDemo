@@ -87,6 +87,7 @@
                 channelName: channelName,
                 price: formData.price
             };
+            document.getElementById("forget").value = "Sending... (Job ID: " + jobId + ")";
             window.loadOrtcFactory(window.IbtRealTimeSJType, function(factory, error) {
                 if (error !== null) {
                     console.log(`ORTC factory error: ${error.message}`);
@@ -97,7 +98,10 @@
 
                     window.ortcClient.onConnected = function() {
                         window.ortcClient.send(''+jobId, JSON.stringify(chunkData));
-
+                        document.getElementById("forget").value = "Sent Successfully!";
+                        setTimeout(function () {
+                            document.getElementById("forget").value = "";
+                        }, 2000);
                     };
                 }
             });
@@ -161,7 +165,8 @@
     <!-- ============================== Fieldset 2 end ============================== -->
 
 
-    <p><input type="button" onclick="handler()" alt="SUBMIT" name="Submit" value="SUBMIT" class="submit-text" /></p>
+    <p><input type="button" onclick="handler()" alt="Send" name="Send" value="Send" class="submit-text" /></p>
+    <p><input style="border:none" type="text" disabled size="20" id="forget" class="text" /><br /></p>
 </form>
 
 </body>
